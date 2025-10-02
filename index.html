@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="MSEE Candidate at UW specializing in embedded systems, with experience in MCU/SoC bring-up, peripheral driver development, and firmware optimization on ESP32 and STM32 platforms. Proficient in C/C++, Python, and assembly (RISC-V, ARM, Xtensa), with strong knowledge of RTOS (FreeRTOS, Zephyr) and peripheral buses (I²C, SPI, UART, CAN). Developed a SIMD-optimized math library for the ESP32-S3 achieving up to 10x integer and 3-5x floating-point performance improvements, with strengths in low-level debugging, performance tuning, and hardware-software integration."
+      content="MSEE Candidate at UW specializing in embedded systems. Focused on MCU/SoC bring-up, peripheral driver development, and firmware optimization on ESP32 and STM32 platforms. Proficient in C/C++, Python, and assembly (RISC-V, ARM, Xtensa), with strong knowledge of RTOS (FreeRTOS, Zephyr) and peripheral buses (I²C, SPI, UART, CAN). Developed a SIMD-optimized math library for the ESP32-S3 achieving up to 10x integer and 3-5x floating-point performance improvements, with strengths in low-level debugging, performance tuning, and hardware-software integration."
     />
     <meta name="author" content="Zhinan Liu" />
     <title>Zhinan (Mike) Liu</title>
@@ -292,7 +292,7 @@ simd_dotp_i8:
     movi.n a7, 0                                    // zeros a7
     beqz a5, .Ltail_start                           // if no full blocks (a5 == 0), skip SIMD and go to scalar tail
 
-    // SIMD multiply-addition loop for 16-byte blocks 
+    // SIMD mul-accumulate loop for 16-byte blocks 
     ee.zero.accx                                    // clears the QACC register
     ee.vld.128.ip     q0, a2, 16                    // loads 16 bytes from a2 into q0, then increment a2 by 16
     loopnez a5, .Lsimd_loop                         // loop until a5 == 0
