@@ -228,11 +228,10 @@
       <ul class="mb-2">
         <li>Hand-tuned, branchless assembly with zero-overhead loops</li>
         <li>
-          Vector ops: add, sub, sum, dot product for int8/16/32 and float32;
+          Vector ops: e.g. add, sub, sum, dotp etc for int8/16/32 and float32;
           benchmarks show ~<strong>[5-10x speedup on INT types and 3-5x speedup of FLOAT type]</strong> vs scalar
         </li>
-        <li>Reproducible benchmarks and unit tests; CMake integration</li>
-        <li>Annotated scalar vs SIMD ASM comparisons for key kernels</li>
+        <li>Reproducible benchmarks and unit tests; CMake integration</li> 
       </ul>
 
       <!-- ASM comparison (collapsible) -->
@@ -293,7 +292,7 @@ simd_dotp_i8:
     movi.n a7, 0                                    // zeros a7
     beqz a5, .Ltail_start                           // if no full blocks (a5 == 0), skip SIMD and go to scalar tail
 
-    // SIMD addition loop for 16-byte blocks 
+    // SIMD multiply-addition loop for 16-byte blocks 
     ee.zero.accx                                    // clears the QACC register
     ee.vld.128.ip     q0, a2, 16                    // loads 16 bytes from a2 into q0, then increment a2 by 16
     loopnez a5, .Lsimd_loop                         // loop until a5 == 0
